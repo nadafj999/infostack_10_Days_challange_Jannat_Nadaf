@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    function sumOfDigits(num) {
+    // Convert the number to a string, split into individual digits, and sum them
+    return num.toString()
+              .split('')            // Split the number into an array of digits (as strings)
+              .reduce((sum, digit) => sum + parseInt(digit), 0);  // Convert each digit to a number and sum them
+}
+
+// Example usage
+const number = 12345;
+console.log(sumOfDigits(number));  // Output: 15
+
+</script>
+</html>
