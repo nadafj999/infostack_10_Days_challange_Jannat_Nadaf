@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    function firstNonRepeatingChar(str) {
+    const seenOnce = new Map();  // Stores the index of first occurrence of a character
+    const repeating = new Set(); // Tracks characters that repeat
+
+    // Convert string to lowercase for case insensitivity
+    const lowerStr = str.toLowerCase();
+
+    for (let i = 0; i < lowerStr.length; i++) {
+        const char = lowerStr[i];
+
+        if (repeating.has(char)) {
+            continue;  // Skip if it's already marked as repeating
+        }
+
+        if (seenOnce.has(char)) {
+            // Move to the repeating set and remove from seenOnce
+            repeating.add(char);
+            seenOnce.delete(char);
+        } else {
+            // Mark the first occurrence of the character
+            seenOnce.set(char, i);
+        }
+    }
+
+    // If we have any non-repeating characters, return the first one
+    if (seenOnce.size > 0) {
+        return str[Array.from(seenOnce.values())[0]];  // Return the original character
+    }
+
+    // If no non-repeating character is found, return -1
+    return -1;
+}
+
+// Example usage
+const inputString = "Swiss";
+console.log(firstNonRepeatingChar(inputString));  // Output: "w"
+
+</script>
+</html>
