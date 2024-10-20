@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+
+<script>
+    function findMissingNumber(arr) {
+    const n = arr.length + 1;  // The array has n-1 elements, so n is arr.length + 1
+
+    // XOR all numbers from 1 to n
+    let xorAll = 0;
+    for (let i = 1; i <= n; i++) {
+        xorAll ^= i;
+    }
+
+    // XOR all numbers in the array
+    let xorArr = 0;
+    for (let num of arr) {
+        xorArr ^= num;
+    }
+
+    // XOR of xorAll and xorArr gives the missing number
+    return xorAll ^ xorArr;
+}
+
+// Example usage
+const arr = [1, 2, 4, 5, 6];  // Missing number is 3
+console.log(findMissingNumber(arr));  // Output: 3
+
+</script>
+</html>
