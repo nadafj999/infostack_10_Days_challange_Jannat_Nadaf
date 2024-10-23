@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    function reverse(arr, start, end) {
+    while (start < end) {
+        // Swap elements at start and end
+        let temp = arr[start];
+        arr[start] = arr[end];
+        arr[end] = temp;
+        start++;
+        end--;
+    }
+}
+
+function rotateArray(arr, k, direction = 'right') {
+    const n = arr.length;
+    
+    // Normalize k in case it's larger than array length
+    k = k % n;
+
+    // If rotating to the left, convert left rotation to equivalent right rotation
+    if (direction === 'left') {
+        k = n - k;
+    }
+
+    // Step 1: Reverse the entire array
+    reverse(arr, 0, n - 1);
+
+    // Step 2: Reverse the first part (from index 0 to k-1)
+    reverse(arr, 0, k - 1);
+
+    // Step 3: Reverse the second part (from index k to end)
+    reverse(arr, k, n - 1);
+}
+
+// Example usage:
+let arr1 = [1, 2, 3, 4, 5];
+let k = 2;
+
+// Rotate to the right by 2 positions
+rotateArray(arr1, k, 'right');
+console.log("Right Rotation:", arr1); // Output: [4, 5, 1, 2, 3]
+
+// Rotate to the left by 2 positions
+let arr2 = [1, 2, 3, 4, 5];
+rotateArray(arr2, k, 'left');
+console.log("Left Rotation:", arr2);  // Output: [3, 4, 5, 1, 2]
+
+</script>
+</html>
