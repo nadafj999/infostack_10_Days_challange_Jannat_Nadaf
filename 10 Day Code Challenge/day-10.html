@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    function countAndSortOccurrences(arr) {
+    const uniqueElements = [];
+    const frequencies = [];
+
+    // Loop through the array to manually count occurrences
+    for (let i = 0; i < arr.length; i++) {
+        let found = false;
+
+        // Check if the element has already been counted
+        for (let j = 0; j < uniqueElements.length; j++) {
+            if (uniqueElements[j] === arr[i]) {
+                frequencies[j]++;  // Increase frequency
+                found = true;
+                break;
+            }
+        }
+
+        // If the element is not found, add it to uniqueElements
+        if (!found) {
+            uniqueElements.push(arr[i]);
+            frequencies.push(1);  // Initialize its frequency as 1
+        }
+    }
+
+    // Sort both arrays (uniqueElements and frequencies) by frequencies in descending order
+    for (let i = 0; i < frequencies.length - 1; i++) {
+        for (let j = i + 1; j < frequencies.length; j++) {
+            if (frequencies[i] < frequencies[j]) {
+                // Swap frequencies
+                let tempFreq = frequencies[i];
+                frequencies[i] = frequencies[j];
+                frequencies[j] = tempFreq;
+
+                // Swap corresponding elements in uniqueElements
+                let tempElem = uniqueElements[i];
+                uniqueElements[i] = uniqueElements[j];
+                uniqueElements[j] = tempElem;
+            }
+        }
+    }
+
+    return { uniqueElements, frequencies };
+}
+
+// Example usage:
+const inputArray = [3, 5, 3, 2, 5, 5, 2, 7];
+const result = countAndSortOccurrences(inputArray);
+console.log(result.uniqueElements);  // Output: [5, 3, 2, 7]
+console.log(result.frequencies);     // Output: [3, 2, 2, 1]
+
+</script>
+</html>
